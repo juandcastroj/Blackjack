@@ -1,0 +1,63 @@
+html, body {
+    margin: 0%;
+    background-color: #2f4f30;
+    color: aliceblue;
+}
+
+.title {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: black;
+    color: aliceblue;
+    padding: 20px;
+}
+.carta {
+    position: relative;
+    left: 100px;
+    width: 160px;
+    margin-left: -75px;
+}
+
+.cards-player {
+    height: 230px;
+}
+
+.cards-computer {
+    height: 230px;
+}
+
+button {
+    padding: 1.5%;
+    margin: 1%;
+    border-radius: 20px;
+    font-weight: bolder;
+}
+
+.btnNew {
+    background-color:#FF8C00 ;
+}
+.btnNew:hover{
+    background-color: #ffa93f;
+    color: aliceblue;
+}
+
+.btnStop {
+    background-color:#ea0e0e ;
+}
+.btnStop:hover{
+    background-color:  #fa4e4e;
+    color: aliceblue;
+}
+
+.btnGet {
+    background-color:#0b89ff ;
+}
+.btnGet:hover{
+    background-color: #5aafff;
+    color: aliceblue;
+}
+
+#containerMain {
+    padding: 2% 15%;
+}
