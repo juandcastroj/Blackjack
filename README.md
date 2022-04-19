@@ -5,6 +5,6 @@ App en la cuál podrás jugar contra la computadora y probar tu suerte, donde ga
 
 ## Despliege 🚀
 
-* [Despliegue Netlify](https://scintillating-zuccutto-6e84c4.netlify.app/)
+* [Despliegue Netlify](https://thunderous-capybara-caf391.netlify.app/)
 
 * ## 👋 Gracias por visitar este repositorio
