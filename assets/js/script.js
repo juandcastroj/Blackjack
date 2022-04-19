@@ -81,7 +81,7 @@ const valueCard = ( card ) => {
     else{
         alert('Computadora gana')
     }
-    }, 100);
+    }, 1000);
 } 
     
 btnGetCard.addEventListener('click', () => {
