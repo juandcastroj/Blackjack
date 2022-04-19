@@ -1,4 +1,4 @@
-#☘ Blackjack 💸
+##☘ Blackjack 💸
 
 Social network that helps recreational cyclists to find company for a ride and create a community.
 
@@ -7,5 +7,5 @@ Blackjack en el cuál podrás jugar contra la computadora y probar tu suerte, do
 ## Despliege 🚀
 
 * [Despliegue Netlify](https://grand-babka-48e26c.netlify.app/)
-* 
+
 * ## 👋 Gracias por visitar este repositorio
