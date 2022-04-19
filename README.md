@@ -1,4 +1,4 @@
-##☘ Blackjack 💸
+# ☘ Blackjack 💸
 
 Social network that helps recreational cyclists to find company for a ride and create a community.
 
