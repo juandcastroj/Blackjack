@@ -1,19 +1,21 @@
 (() => {
+    'use strict'
 
-    let deck = []
-    const types = ['C', 'D', 'H', 'S']
-    const specials = ['A', 'J', 'Q', 'K']
 
-    playerPoints = 0
-    pcPoints = 0
+    let deck      = []
+    const types   = ['C', 'D', 'H', 'S'],
+         specials = ['A', 'J', 'Q', 'K'];
 
-    const btnGetCard = document.querySelector('#btnGetCard')
-    const btnStopGame = document.querySelector('#btnStopGame')
-    const btnNewGame = document.querySelector('#btnNewGame')
+    let playerPoints = 0,
+        pcPoints = 0
 
-    const pointsHtml = document.querySelectorAll('strong')
-    const divCardPlayer = document.querySelector('.cards-player')
-    const divCardComputer = document.querySelector('.cards-computer')
+    const btnGetCard = document.querySelector('#btnGetCard'),
+         btnStopGame = document.querySelector('#btnStopGame'),
+          btnNewGame = document.querySelector('#btnNewGame'),
+          pointsHtml = document.querySelectorAll('strong'),
+       divCardPlayer = document.querySelector('.cards-player'),
+     divCardComputer = document.querySelector('.cards-computer');
+
 
     //crear una nuvea baraja
     const createDeck = () => {
@@ -26,24 +28,17 @@
             for (let spe of specials) {
                 deck.push(spe + type)
             }
-        }
-        //console.log(deck);
-        deck = _.shuffle(deck)
-        //console.log( deck );
-        return deck
+        } 
+        return _.shuffle(deck)
     }
     createDeck()
 
     const getCard = () => {
-
         if (deck.length === 0) {
             throw ('no hay cartas en el deck')
-        }
-        const card = deck.pop()
-        //console.log(card);
-        return card
+        }  
+        return  deck.pop()
     }
-
 
     const valueCard = (card) => {
 
@@ -120,10 +115,8 @@
         btnGetCard.disabled = false
         btnStopGame.disabled = false
 
-        deck = []
         playerPoints = 0
         pcPoints = 0
-        createDeck()
 
         pointsHtml[0].innerText = '0'
         pointsHtml[1].innerText = '0'
