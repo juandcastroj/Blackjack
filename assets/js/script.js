@@ -1,7 +1,6 @@
 (() => {
     'use strict'
 
-
     let deck      = []
     const types   = ['C', 'D', 'H', 'S'],
          specials = ['A', 'J', 'Q', 'K'];
@@ -16,8 +15,12 @@
        divCardPlayer = document.querySelector('.cards-player'),
      divCardComputer = document.querySelector('.cards-computer');
 
+     const initialDeck = () => {
+        deck = [],
+        deck = createDeck()
+     }
 
-    //crear una nuvea baraja
+    //crear una nueva baraja
     const createDeck = () => {
         for (let i = 2; i <= 10; i++) {
             for (let type of types) {
@@ -29,15 +32,17 @@
                 deck.push(spe + type)
             }
         } 
-        return _.shuffle(deck)
+
+        return  _.shuffle( deck )
     }
-    createDeck()
+    
 
     const getCard = () => {
         if (deck.length === 0) {
-            throw ('no hay cartas en el deck')
+            alert('No hay cartas en la baraja, dale Nuevo Juego')
         }  
-        return  deck.pop()
+  
+        return deck.pop()
     }
 
     const valueCard = (card) => {
@@ -77,7 +82,7 @@
             else {
                 alert('Computadora gana')
             }
-        }, 1000);
+        }, 800);
     }
 
     btnGetCard.addEventListener('click', () => {
@@ -111,6 +116,8 @@
     })
 
     btnNewGame.addEventListener('click', () => {
+
+        initialDeck()
 
         btnGetCard.disabled = false
         btnStopGame.disabled = false
