@@ -19,11 +19,7 @@ html, body {
     margin-left: -75px;
 }
 
-.cards-player {
-    height: 230px;
-}
-
-.cards-computer {
+.cardsDiv {
     height: 230px;
 }
 

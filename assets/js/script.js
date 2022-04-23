@@ -1,27 +1,39 @@
-(() => {
+ const myModule = (() => {
     'use strict'
 
     let deck      = []
     const types   = ['C', 'D', 'H', 'S'],
          specials = ['A', 'J', 'Q', 'K'];
 
-    let playerPoints = 0,
-        pcPoints = 0
+    let playersPoints = []
 
     const btnGetCard = document.querySelector('#btnGetCard'),
          btnStopGame = document.querySelector('#btnStopGame'),
-          btnNewGame = document.querySelector('#btnNewGame'),
-          pointsHtml = document.querySelectorAll('strong'),
-       divCardPlayer = document.querySelector('.cards-player'),
-     divCardComputer = document.querySelector('.cards-computer');
+          btnNewGame = document.querySelector('#btnNewGame')
 
-     const initialDeck = () => {
-        deck = [],
+    const pointsHtml = document.querySelectorAll('strong'),
+            divCards = document.querySelectorAll('.cardsDiv')
+    
+
+     const initialGame = ( numPlayers = 2 ) => {
         deck = createDeck()
+
+        playersPoints = [];
+        for( let i = 0; i< numPlayers; i++ ) {
+            playersPoints.push(0);
+        }
+        
+        pointsHtml.forEach( elem => elem.innerText = 0 );
+        divCards.forEach( elem => elem.innerHTML = '' );
+
+        btnGetCard.disabled   = false;
+        btnStopGame.disabled = false;
      }
 
     //crear una nueva baraja
     const createDeck = () => {
+
+        deck = []
         for (let i = 2; i <= 10; i++) {
             for (let type of types) {
                 deck.push(i + type)
@@ -53,24 +65,25 @@
             : valor * 1
     }
 
-    const computerTurn = (minScore) => {
+    const accumulatePoints = ( card, turn ) => {
+        playersPoints[turn] = playersPoints[turn] + valueCard( card )
+        pointsHtml[turn].innerText = playersPoints[turn]
+        return playersPoints[turn]
+    }
 
-        do {
-            const card = getCard()
-            pcPoints = pcPoints + valueCard(card)
-            pointsHtml[1].innerHTML = pcPoints
+    const createCard = ( card, turn ) => {
 
-            const imgCard = document.createElement('img')
-            imgCard.src = `/assets/cartas/${card}.png`
-            imgCard.classList.add('carta')
-            divCardComputer.append(imgCard)
+        const imgCard = document.createElement('img')
+        imgCard.src = `/assets/cartas/${card}.png`
+        imgCard.classList.add('carta')
+        divCards[turn].append( imgCard )
+    }
 
-            if (minScore > 21) { break }
-        }
-        while ((pcPoints < minScore) && (minScore <= 21));
+    const winner = () => {
+        const [ minScore, pcPoints ] = playersPoints
 
         setTimeout(() => {
-            if (playerPoints === pcPoints) {
+            if (minScore === pcPoints) {
                 alert('Empate')
             }
             else if ((minScore > 21)) {
@@ -85,52 +98,52 @@
         }, 800);
     }
 
+    const computerTurn = ( minScore ) => {
+
+        let pcPoints = 0
+
+        do {
+            const card = getCard()
+            pcPoints = accumulatePoints( card, playersPoints.length - 1 )
+            createCard( card, playersPoints.length - 1 )
+        }
+        while ((pcPoints < minScore) && (minScore <= 21));
+
+        winner()
+    }
+
     btnGetCard.addEventListener('click', () => {
 
-        const card = getCard()
-        playerPoints = playerPoints + valueCard(card)
-        pointsHtml[0].innerHTML = playerPoints
+        const card = getCard(),
+              playerPoints = accumulatePoints( card, 0 )
 
-        const imgCard = document.createElement('img')
-        imgCard.src = `/assets/cartas/${card}.png`
-        imgCard.classList.add('carta')
-        divCardPlayer.append(imgCard)
+        createCard( card, 0 )
 
-        if (playerPoints > 21) {
+        if ( playerPoints > 21 ) {
             btnGetCard.disabled = true
             btnStopGame.disabled = true
-            computerTurn(playerPoints)
-
+            computerTurn( playerPoints )
 
         } else if (playerPoints === 21) {
             btnGetCard.disabled = true
             btnStopGame.disabled = true
-            computerTurn(playerPoints)
+            computerTurn( playerPoints )
         }
     })
 
     btnStopGame.addEventListener('click', () => {
         btnGetCard.disabled = true
         btnStopGame.disabled = true
-        computerTurn(playerPoints)
+        computerTurn( playersPoints[0] )
     })
 
     btnNewGame.addEventListener('click', () => {
 
-        initialDeck()
-
-        btnGetCard.disabled = false
-        btnStopGame.disabled = false
-
-        playerPoints = 0
-        pcPoints = 0
-
-        pointsHtml[0].innerText = '0'
-        pointsHtml[1].innerText = '0'
-
-        divCardComputer.innerHTML = ''
-        divCardPlayer.innerHTML = ''
+        initialGame()
     })
 
+    return {
+        newGame: initialGame
+    }
 })()
 
